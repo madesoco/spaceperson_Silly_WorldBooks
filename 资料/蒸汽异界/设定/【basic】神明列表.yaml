@@ -1,0 +1,188 @@
+pantheon:
+  - category: 人类神
+    description: 由凡人的人类通过某种方式晋升而来的神明。
+    list:
+      - name: 米斯特拉
+        title: 魔法女神
+        symbol: "由七颗星星组成的北斗七星图案"
+        colors:
+          - 深蓝色、银色
+        reason_for_worship: "法师们为寻求更深奥的魔法知识，或祈求施法顺利而信仰她。"
+      - name: 普罗菲特
+        title: 金币与贸易女神
+        symbol: "一个刻有天平图案的金币"
+        colors:
+          - 金色、翠绿色
+        reason_for_worship: "商人和手工业者为祈求生意兴隆财源广进而信仰她。"
+      - name: 阿斯特莱雅
+        title: 正义女神
+        symbol: "一架保持平衡的白金天平"
+        colors:
+          - 纯白色、金色
+        reason_for_worship: "法官士兵以及受压迫者为寻求公正的裁决与秩序而信仰她。"
+      - name: 苍姬
+        title: 死亡与死者之神
+        symbol: "一朵盛开的白色百合花"
+        colors:
+          - 苍白色、黑色
+        reason_for_worship: "守墓人与渴望平静长眠之人为祈求逝者安息而信仰她。"
+      - name: 埃癸斯
+        title: 保护之神
+        symbol: "一面刻有眼睛图案的鸢盾"
+        colors:
+          - 钢灰色、棕色
+        reason_for_worship: "旅人与士兵为祈求旅途平安或在战斗中幸存而信仰他。"
+      - name: 多洛莉丝
+        title: 谎言女神
+        symbol: "一张华丽的笑脸假面"
+        colors:
+          - 紫色、青色
+        reason_for_worship: "间谍小偷与政治家为祈求计谋成功或蒙骗他人而信仰她。"
+      - name: 泰绮
+        title: 幸运女神
+        symbol: "一枚四叶草"
+        colors:
+          - 亮绿色、金色
+        reason_for_worship: "赌徒与冒险者为祈求好运降临而信仰她。"
+      - name: 安德烈
+        title: 勇气之神
+        symbol: "一把燃烧的战锤"
+        colors:
+          - 赤金色、白色
+        reason_for_worship: "战士与面对挑战者为获得克服恐惧的勇气而信仰他。"
+      - name: 克罗尼亚
+        title: 悠久女士
+        symbol: "一个没有指针的钟盘"
+        colors:
+          - 灰白色、青铜色
+        reason_for_worship: "历史学家与寻求永生者为探求时间的秘密而信仰她。"
+      - name: 雷克斯
+        title: 暴政之神
+        symbol: "一只紧握的铁拳"
+        colors:
+          - 黑色、铁锈红
+        reason_for_worship: "独裁者与渴望权力者为巩固统治或获得支配他人的力量而信仰他。"
+      - name: 希奥涅
+        title: 寒冬女神
+        symbol: "一片六角形的雪花"
+        colors:
+          - 冰蓝色、白色
+        reason_for_worship: "北方居民为祈求在严酷的寒冬中幸存而信仰她。"
+      - name: 瑟兰妮
+        title: 月亮女神
+        symbol: "一弯新月"
+        colors:
+          - 银色、深紫色
+        reason_for_worship: "夜行者与恋人为寻求夜晚的庇护或浪漫的邂逅而信仰她。"
+      - name: 诺克特
+        title: 黑暗女士
+        symbol: "一个纯黑色的圆环"
+        colors:
+          - 黑色、灰色
+        reason_for_worship: "刺客与寻求庇护者为融入黑暗或躲避追踪而信仰她。"
+      - name: 西尔万
+        title: 荒野自然之神
+        symbol: "一根盘绕着藤蔓的鹿角"
+        colors:
+          - 森林绿、土黄色
+        reason_for_worship: "猎人与德鲁伊为祈求自然的恩惠与野外的生存技巧而信仰他。"
+      - name: 帕克斯
+        title: 和平之神
+        symbol: "一只衔着橄榄枝的白鸽"
+        colors:
+          - 天蓝色、白色
+        reason_for_worship: "厌倦战争的平民与外交官为祈求冲突终结与安宁的生活而信仰他。"
+      - name: 索菲亚
+        title: 知识女士
+        symbol: "一本展开的书，书页上有一把钥匙"
+        colors:
+          - 象牙白、棕褐色
+        reason_for_worship: "学者与学生为追求真理与获得智慧而信仰她。"
+      - name: 诺索斯
+        title: 疾病之神
+        symbol: "一只绿色的苍蝇"
+        colors:
+          - 病态的绿色、灰败的黄色
+        reason_for_worship: "受瘟疫折磨者为祈求康复或散播瘟疫者为诅咒敌人而信仰他。"
+      - name: 赫菲斯
+        title: 工艺之神
+        symbol: "交叉的齿轮与铁锤"
+        colors:
+          - 黄铜色、煤黑色
+        reason_for_worship: "工匠与发明家为寻求灵感与创造出杰作而信仰他。"
+      - name: 伯勒姆斯
+        title: 战争之神
+        symbol: "交叉的断剑与破碎的盾牌"
+        colors:
+          - 鲜红色、铁灰色
+        reason_for_worship: "军人为祈求战争胜利与武运昌隆而信仰他。"
+      - name: 帕那刻亚
+        title: 医疗女士
+        symbol: "一根盘绕着单蛇的木杖"
+        colors:
+          - 柔和的绿色、白色
+        reason_for_worship: "医生与病人为祈求治愈病痛与拯救生命而信仰她。"
+      - name: 菲卡
+        title: 谋杀女士
+        symbol: "一把滴血的匕首"
+        colors:
+          - 暗红色、黑曜石色
+        reason_for_worship: "刺客与复仇者为祈求刺杀成功而信仰她。"
+      - name: 塞西莉亚
+        title: 少女保护之神
+        symbol: "一朵含苞待放的白玫瑰"
+        colors:
+          - 粉色、纯白色
+        reason_for_worship: "年轻的少女们为祈求平安成长，或所有希望保护少女纯洁的人为获得力量而信仰她。"
+
+  - category: 非人类神
+    description: 由非人类的智慧种族晋升而来的神明。
+    list:
+      - name: 爱丽丝
+        title: 人偶女神
+        symbol: "一个带有发条钥匙的提线木偶"
+        colors:
+          - 金色、淡紫色
+        reason_for_worship: "获得自我意识的人偶为寻求庇护与同伴而信仰她。"
+      - name: 艾达
+        title: 苍白女士
+        symbol: "一张被蛛网覆盖的女性侧脸剪影"
+        colors:
+          - 灰白色、银色
+        reason_for_worship: "苍白精灵为祈求在残酷的地下社会中生存并复仇成功而信仰她。"
+      - name: 莉莉丝
+        title: 欲望女士
+        symbol: "一朵缠绕着荆棘的黑玫瑰"
+        colors:
+          - 暗紫色、绯红色
+        reason_for_worship: "追求极致性爱与感官享乐者为释放内心欲望而信仰她。"
+      - name: 阿波罗
+        title: 艺术与射手之精灵神
+        symbol: "一把里拉琴与一支箭矢交叉"
+        colors:
+          - 金色、天蓝色
+        reason_for_worship: "精灵艺术家与弓箭手为追求技艺的巅峰而信仰他。"
+      - name: 纳克
+        title: 智慧之哥布林神
+        symbol: "一个正在爆炸的烧瓶"
+        colors:
+          - 肮脏的绿色、棕色
+        reason_for_worship: "哥布林发明家与萨满为寻求狡猾的智慧与生存之道而信仰他。"
+      - name: 伊卡洛斯
+        title: 飞行之翼人神
+        symbol: "一片燃烧的羽毛"
+        colors:
+          - 纯白色、橙红色
+        reason_for_worship: "翼人为追求更快的飞行速度与天空的自由而信仰他。"
+      - name: 杜林
+        title: 工匠与艺术之矮人神
+        symbol: "一把刻有符文的战斧"
+        colors:
+          - 青铜色、深红色
+        reason_for_worship: "矮人工匠为打造出传世的杰作而信仰他。"
+      - name: 格罗玛什
+        title: 战争与生育之神
+        symbol: "一根巨大的狼牙棒"
+        colors:
+          - 绿色、鲜红色
+        reason_for_worship: "兽人为祈求在战斗中获得荣耀并繁衍强大的后代而信仰他。"

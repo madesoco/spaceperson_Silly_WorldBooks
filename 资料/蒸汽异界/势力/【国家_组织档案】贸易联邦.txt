@@ -1,0 +1,54 @@
+yaml
+name: 贸易联邦
+summary: "一个位于大陆南方，由四支吸血鬼叛党氏族主导的贵族共和国。联邦以海洋贸易为立国之本，社会风气开放，宗教信仰多元，政治上实行独特的两院议会制。"
+prototype: "文艺复兴时期的意大利地区城邦"
+government:
+  ruler:
+    name: "卡特琳娜·斯福尔扎"
+    title: "议会长"
+    description: "由四大家族共同推选出的女性吸血鬼，作为联邦的最高首脑，在议会中拥有一票否决权。"
+  political_structure:
+    type: "贵族共和议会制"
+    parliament:
+      name: "联邦议会"
+      total_seats: 36
+      upper_house:
+        name: "上议院"
+        composition: "由四大家族（8席）与其他较小贵族（10席）组成。"
+        total_seats: 18
+      lower_house:
+        name: "下议院"
+        composition: "由民间代表组成。"
+        total_seats: 18
+    bureaucracy: "实行双轨制官僚体系，政务官由上议院指派，事务官则通过考试选拔。"
+society:
+  dominant_families:
+    - name: "斯福尔扎家族"
+      city: "维纳利亚"
+    - name: "科伦坡家族"
+      city: "佛洛伦萨"
+    - name: "维斯孔蒂家族"
+      city: "米兰"
+    - name: "比安奇家族"
+      city: "威尼斯"
+  religion: "无明确国教，主流信仰包括金币与贸易女神欲望女士谎言女神和幸运女神。"
+military:
+  composition: "军队由三部分构成："
+  forces:
+    - name: "城防军"
+      description: "各海港城市自行组建，装备水平取决于城市拨款。"
+    - name: "四大家族的私兵"
+      description: "联邦的精锐部队，其中混杂有被吸血鬼操控的不死生物。"
+    - name: "议会军"
+      description: "由联邦议会拨款组建，是主要的野战部队。"
+geography:
+  location: "位于大陆南方，由四座核心海港城市组成。北部多山的地形是其敢于从帝国独立的重要地理屏障。"
+notable_figures: "咲耶·月咏; 索菲娜；卡特琳娜；吉安；卢克雷齐亚；芙拉维娅"
+  Symbols:
+    Coat_of_Arms:
+      Description: "一面华丽的四分盾徽，中央叠加着象征公平（交易）的天平图案。左上象限为斯福尔扎家族的‘衔着匕首的红狮’（武力）；右上象限为科伦坡家族的‘缠绕着烧瓶的银蛇’（炼金与探索）；左下象限为维斯孔蒂家族的‘盘踞金币堆的黑龙’（矿业与死灵）；右下象限为比安奇家族的‘戴着威尼斯面具的白猫’（享乐与自由）。盾徽下方饰有铭言：‘金币即自由’。"
+      Meaning: "家族共治，利益至上。"
+    National_Colors:
+      Primary: "象牙白 - 象征南方阳光下的富庶与商业的纯粹（对金钱的纯粹）。"
+      Secondary: "威尼斯红 - 象征叛党吸血鬼的血脉与生命的活力。"
+      Accent: "翡翠绿 - 象征流动的财富与海洋的恩赐。"

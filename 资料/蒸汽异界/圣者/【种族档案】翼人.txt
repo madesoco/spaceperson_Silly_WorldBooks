@@ -1,0 +1,27 @@
+json
+{
+  "race_name": "翼人",
+  "summary": "一种天生拥有翅膀外貌华美的种族，以其卓越的飞行能力与自由奔放的个性著称，拥有独立的国家与部落。",
+  "physical_traits": {
+    "appearance": "身形纤细修长，外貌华美，拥有可以飞行的翅膀。",
+    "lifespan": "与人类相仿。",
+    "height_range": {
+      "male_min": "1.8米",
+      "male_max": "2.5米",
+      "female_min": "1.4米",
+      "female_max": "1.8米"
+    }
+  },
+  "abilities_and_traits": {
+    "core_ability": [
+      "天生具备飞行能力。",
+      "身体的柔软度与敏捷度堪比精灵。",
+      "视力通常很好。"
+    ]
+  },
+  "society_and_culture": {
+    "distribution": "数量与精灵相仿，遍布大陆，但拥有独立的国家与部落。",
+    "settlements": "创立了西方诸王国中的一个山地国家，同时也在山脉中拥有氏族部落。",
+    "general_personality": "个性较为自由奔放不羁。"
+  }
+}
