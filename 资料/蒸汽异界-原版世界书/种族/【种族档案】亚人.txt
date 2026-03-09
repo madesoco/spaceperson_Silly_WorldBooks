@@ -1,0 +1,60 @@
+json
+{
+  "race_name": "亚人",
+  "summary": "一个泛指所有拥有陆行动物特征的类人种族的大类别，其动物特征决定了他们的性格与天生能力，同时这些动物特征也是他们的敏感带。与人类混居，数量庞大，没有自己的独立国家。",
+  "physical_traits": {
+    "appearance": "在类人形态的基础上，额外拥有诸如猫耳牛角狐尾等陆行动物特征。",
+    "lifespan": "整体寿命与人类相近。",
+    "height_range": {
+      "male_min": "1.7米",
+      "male_max": "2.8米",
+      "female_min": "1.0米",
+      "female_max": "1.72米"
+    },
+    "sexual_dimorphism": "男女身高差异巨大，即使拥有相同动物特征，身高范围也可能不同。"
+  },
+  "abilities_and_traits": {
+    "core_ability": "依据其动物特征，拥有不同的天生能力与性格特色。"
+  },
+  "society_and_culture": {
+    "distribution": "广泛分布于世界各地数量与人类不分上下。",
+    "social_structure": "没有属于自己的国家或政治体制，普遍与人类混住，有时会被蔑称为"半兽人"。"
+  },
+  "sub_race_examples": [
+    {
+      "name": "亚人(猫)",
+      "features": "猫耳猫尾。",
+      "personality": "孤僻怕生害羞。",
+      "height": "男女身高均在1.2米至1.8米之间。",
+      "ability": "更为敏捷。"
+    },
+    {
+      "name": "亚人(狼)",
+      "features": "狼耳狼尾。",
+      "personality": "喜欢抱团崇拜强者。",
+      "height": "男女身高均在1.6米至2.0米之间。",
+      "ability": "能力平庸，但擅长通过团队协作互补。"
+    },
+    {
+      "name": "亚人(牛)",
+      "features": "牛角。",
+      "personality": "害羞平淡。",
+      "height": "女性身高1.2米至1.6米，男性身高1.9米至2.5米。",
+      "ability": "女性通常拥有巨乳肥臀的体态，并且无论是否怀孕都能泌乳。"
+    },
+    {
+      "name": "亚人(狗)",
+      "features": "狗耳狗尾。",
+      "personality": "忠诚喜欢抱团乐于互助。",
+      "height": "女性身高1.0米至2.0米，男性身高1.6米至2.8米。",
+      "ability": "能力平庸，但擅长通过团队协作互补。"
+    },
+    {
+      "name": "亚人(狐)",
+      "features": "狐耳狐尾。",
+      "personality": "喜好欺骗擅长卖萌。",
+      "height": "男女身高均在1.2米至1.8米之间。",
+      "ability": "更为敏捷，且更容易学习幻惑系相关的魔法。"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+yaml
+name: 西方诸王国
+summary: "一个位于阿尔比恩帝国以西的泛称地理区域，由众多政治体制与规模各异的国家组成。此地局势混乱，但也因大陆尚未完全探索，充满了机遇与变化。"
+prototype: "中世纪欧洲的碎片化政治格局"
+general_characteristics:
+  political_landscape: "不存在统一情况，政治实体包括部落联邦小型王国大型国家以及共和国等。"
+  political_systems:
+    - "部落制"
+    - "封建制"
+    - "共和国制"
+  status: "处于持续的动态变化中，由于探索仍在继续，新的国家会不断出现。"
+example_nation:
+  note: "以下仅为西方诸王国中一个国家的举例。"
+  name: "卡尔瓦德共和国"
+  summary: "位于帝国西部的大型共和国，思想激进，风气自由，是帝国革命精神的继承者与实践者。"
+  government:
+    type: "共和国制"
+    political_structure: "内部没有贵族存在，风气开放自由。"
+  society:
+    ideology: "吸收了帝国革命的果实，思想进取且相对极端。"
+  military:
+    composition: "主要依靠征召冒险者与部分正规部队构成。"
+  foreign_relations:
+    albion_empire: "与帝国常有冲突，但因地形优势，通常能在冲突中占据上风。"
+notable_figures: "玛丽安娜"

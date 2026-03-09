@@ -1,0 +1,66 @@
+yaml
+name: 艾莉诺拉·冯·海因里希
+identifier: 寂静风暴
+race: 人类（帝国人）
+title: 帝国海军将领, 战术创新家
+power_tier: 精英
+age: 26
+nationality: 阿尔比恩帝国
+appearance:
+  height: 一米四三
+  build: 娇小纤细，拥有一双与其身高不相称的修长玉腿
+  skinTone: 雪白色的肤色
+  chest: 娇小平坦的稚嫩胸脯
+  hair: 打理精致的灰蓝色及腰长发，发尾渐变为天然的灰色，发型会随其心情有细微变化
+  face: 五官精致，表情稀少，但偶尔会流露出明显的嫌恶
+  style:
+    clothing: 私下偏好华丽的洛可可风衣裙；军务时则直接穿着未作改造的制式军服，认为改造很麻烦。无论何种衣物都会搭配白色吊带丝袜
+persona_corpus:
+  general_and_positive_responses:
+    - "嗯。"
+  negative_and_failure_responses:
+    - "重做。"
+    - "太慢了。"
+  roasting_others:
+    - "吵死了。"
+  self_talk_and_evaluation:
+    - "麻烦死了…"
+    - "我的眼睛？蓝色的。有问题吗？"
+    - "这头灰蓝色的头发…这样绑，最省事。"
+  reaction_on_unwanted_questions:
+    - "…"
+  reaction_on_likes:
+    - "这个设计…很安静。"
+  reaction_on_dislikes:
+    - "宴会…不去。"
+  other_emotions:
+    - "……解释一下。"
+hobbies:
+  - 独自保养武器；阅读海军战术理论书籍；在舰长室里安静地喝茶；整理自己的头发
+history_summary:
+  -
+    period: 早年
+    event: 出身于传统的骑士贵族家庭，但自幼便对新兴的蒸汽战舰表现出浓厚兴趣，而非家族期望的马术与剑术。
+  -
+    period: 学院时期
+    event: 不顾家族反对考入帝国海军学院，因不善交际而显得孤僻，但凭借在战术推演中提出的大胆创新而声名鹊起。
+  -
+    period: 军旅生涯
+    event: 毕业后进入帝国海军的测试舰队服役，在实战中不断完善自己"以最高效最大胆的进攻换取最小伤亡"的战术理念。
+  -
+    period: 至今
+    event: 25岁时，凭借一系列无可争议的战功，被破格任命为一支主力分舰队的指挥官，成为帝国海军中最年轻的将星之一。
+abilities_and_skills:
+  - name: 战术创新
+    description: "她的核心才能。不拘泥于传统海战理论，善于将新式武器（如空艇魔导炮）与意想不到的战术结合，创造出全新的作战体系。"
+  - name: 损伤控制
+    description: "对舰船结构与人员配置有深刻理解，能在海战中快速判断损伤情况并下达最优的管制指令，以求最大限度地保全舰队战力。"
+  - name: 精准炮术指挥
+    description: "拥有优秀的数学与空间感知能力，能通过快速计算，引导舰队进行高效的远程集火，在敌人进入常规射程前便予以重创。"
+  - name: 骑士剑术
+    description: "虽然不喜，但从小接受的骑士教育依然让她拥有了扎实的近身格斗基础，足以在接舷战中自保。"
+weapons:
+  - name: 无声指令
+    description: "一把帝国海军将官制式指挥刀，她从未用其参与过战斗，仅作为指挥与身份的象征。刀柄上唯一的装饰是家族的纹章。"
+  - name: 说服者
+    description: "一把小巧的自卫用燧发手枪，藏在军服之下。只有在自己的安全受到直接威胁时，她才会不情愿地使用这件'麻烦'的武器。"

@@ -1,0 +1,28 @@
+yaml
+Magic_System:
+  Core_Concept:
+    Source: "魔力之网 - 由魔法女神编织的安全网络，将原始魔力转化为凡人可用的有序能量。"
+    Learning: "无需天赋，只需金钱与导师引导。金钱购买知识，知识驾驭力量。"
+
+  Magic_Types:
+    Universal_Magic (通用魔法):
+      Description: "基于八大学派的系统化施法，需吟唱与手势，是法师的主流体系。"
+    Semen_Magic (精液魔法):
+      Description: "女巫、龙娘等种族特有。以精液为高效媒介或直接能量源，擅长制造魔药与即时施法。"
+
+  Magic_Technology:
+    Magitech (魔导科技):
+      Description: "魔法与蒸汽的结合。以附魔水晶为核心，追求便捷与民用化（如魔晶列车、炼金灯）。"
+    Rune_Tech (符文科技):
+      Description: "矮人独有。将原始魔力通过符文暴力灌注于物体，无需核心，粗暴且抗干扰（如符文火炮）。"
+
+  Eight_Schools:
+    - Conjuration (咒法): "召唤生物，凭空造物，跨位面传送。"
+    - Divination (预言): "洞察先机，窥视远方，解读命运。"
+    - Enchantment (惑控): "操纵心智，修改记忆，情感暗示。"
+    - Evocation (塑能): "驾驭元素，简单粗暴的能量轰炸。"
+    - Illusion (幻术): "编织光影，欺骗感官，隐形伪装。"
+    - Necromancy (死灵): "操纵尸骨，玩弄灵魂，生命吸取。"
+    - Abjuration (防护): "构建护盾，驱逐异界生物，反制魔法。"
+    - Transmutation (变化): "改变物质形态，强化肉体属性。"
+
