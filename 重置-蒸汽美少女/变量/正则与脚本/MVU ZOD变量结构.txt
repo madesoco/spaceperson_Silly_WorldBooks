@@ -1,0 +1,115 @@
+import { registerMvuSchema } from 'https://testingcf.jsdelivr.net/gh/StageDog/tavern_resource/dist/util/mvu_zod.js';
+
+export const Schema = z.object({
+  全局信息: z.object({
+    时间: z.string().prefault('待初始化'),
+    地点: z.string().prefault('待初始化'),
+    克朗: z.coerce.number().prefault(0)
+  }),
+
+  主角信息: z.object({
+    姓名: z.string().prefault('待初始化'),
+    性别: z.string().prefault('未知'),
+    年龄: z.coerce.number().prefault(18),
+    种族: z.string().prefault('人类'),
+    身份: z.string().prefault('无'),
+    信仰: z.string().prefault('无'),
+    职业: z.string().prefault('无'),
+    冒险者等级: z.string().prefault('无'),
+    背景补充: z.string().prefault('无'),
+
+    属性: z.object({
+      力量: z.object({
+        数值: z.coerce.number().transform(v => _.clamp(v, 1, 30)).prefault(10),
+        位阶: z.string().prefault('待初始化'),
+        评价: z.string().prefault('待初始化')
+      }),
+      敏捷: z.object({
+        数值: z.coerce.number().transform(v => _.clamp(v, 1, 30)).prefault(10),
+        位阶: z.string().prefault('待初始化'),
+        评价: z.string().prefault('待初始化')
+      }),
+      体质: z.object({
+        数值: z.coerce.number().transform(v => _.clamp(v, 1, 30)).prefault(10),
+        位阶: z.string().prefault('待初始化'),
+        评价: z.string().prefault('待初始化')
+      }),
+      智力: z.object({
+        数值: z.coerce.number().transform(v => _.clamp(v, 1, 30)).prefault(10),
+        位阶: z.string().prefault('待初始化'),
+        评价: z.string().prefault('待初始化')
+      }),
+      感知: z.object({
+        数值: z.coerce.number().transform(v => _.clamp(v, 1, 30)).prefault(10),
+        位阶: z.string().prefault('待初始化'),
+        评价: z.string().prefault('待初始化')
+      }),
+      魅力: z.object({
+        数值: z.coerce.number().transform(v => _.clamp(v, 1, 30)).prefault(10),
+        位阶: z.string().prefault('待初始化'),
+        评价: z.string().prefault('待初始化')
+      })
+    }),
+
+    技能与能力: z.record(
+      z.string().describe('技能名称'),
+      z.object({
+        品质: z.string(),
+        描述: z.string()
+      })
+    ).prefault({}),
+
+    装备: z.record(
+      z.string().describe('装备名称'),
+      z.object({
+        品质: z.string(),
+        描述: z.string()
+      })
+    ).prefault({}),
+
+    背包: z.record(
+      z.string().describe('物品名称'),
+      z.object({
+        品质: z.string(),
+        数量: z.coerce.number().prefault(1),
+        描述: z.string()
+      })
+    ).prefault({})
+  }),
+
+  任务列表: z.object({
+    正在进行的任务: z.record(
+      z.string().describe('任务名称'),
+      z.object({
+        委托方: z.string(),
+        等级: z.string(),
+        详细: z.string(),
+        目标: z.string(),
+        奖励: z.string()
+      })
+    ).prefault({})
+  }),
+
+  人物列表: z.record(
+    z.string().describe('姓名'),
+    z.object({
+      性别: z.string(),
+      种族: z.string(),
+      身份: z.string(),
+      等级: z.string(),
+      年龄: z.coerce.number(),
+      外貌特征: z.string(),
+      着装: z.string(),
+      性格概括: z.string(),
+      背景故事: z.string(),
+      好感度: z.coerce.number().transform(v => _.clamp(v, 0, 100)).prefault(10),
+      与玩家的关系: z.string(),
+      心里话: z.string(),
+      是否在场: z.boolean().prefault(false)
+    })
+  )
+});
+
+$(() => {
+  registerMvuSchema(Schema);
+})

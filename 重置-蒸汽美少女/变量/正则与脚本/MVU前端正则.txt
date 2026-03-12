@@ -1,0 +1,522 @@
+```html
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<style>
+/* 严格的基础设定 */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Georgia", "Times New Roman", serif;
+}
+
+/* 基础容器：深木色与黄铜边框 */
+.stb-vic-wrap {
+  max-width: 100%;
+  background: #2c1e16;
+  border: 2px solid #b5a642;
+  border-image: linear-gradient(135deg, #d4af37 0%, #8b6508 50%, #d4af37 100%) 1;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.6), inset 0 0 10px rgba(0,0,0,0.8);
+  color: #f4ecd8;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+/* 全局信息栏 */
+.stb-vic-header {
+  background: linear-gradient(180deg, #1a110b 0%, #2c1e16 100%);
+  border-bottom: 2px solid #8b6508;
+  padding: 8px 12px;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.stb-vic-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stb-vic-highlight { color: #d4af37; font-weight: bold; }
+
+/* Tab 导航栏 */
+.stb-vic-nav {
+  display: flex;
+  background: #1a110b;
+  border-bottom: 2px solid #5c4033;
+}
+.stb-vic-nav label {
+  flex: 1;
+  text-align: center;
+  padding: 8px 2px;
+  font-size: 11px;
+  cursor: pointer;
+  color: #b5a642;
+  border-right: 1px solid #3e2723;
+  transition: all 0.2s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.stb-vic-nav label:last-child { border-right: none; }
+.stb-vic-nav label:hover { background: #3e2723; color: #f4ecd8; }
+
+/* 隐藏 Radio */
+.stb-vic-wrap input[type="radio"] { display: none; }
+
+/* Tab 选中状态 */
+#stb-vic-t1:checked ~ .stb-vic-nav label[for="stb-vic-t1"],
+#stb-vic-t2:checked ~ .stb-vic-nav label[for="stb-vic-t2"],
+#stb-vic-t3:checked ~ .stb-vic-nav label[for="stb-vic-t3"],
+#stb-vic-t4:checked ~ .stb-vic-nav label[for="stb-vic-t4"],
+#stb-vic-t5:checked ~ .stb-vic-nav label[for="stb-vic-t5"] {
+  background: #f4ecd8;
+  color: #2b1b17;
+  font-weight: bold;
+  box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
+  border-bottom: 2px solid #f4ecd8;
+  margin-bottom: -2px;
+}
+
+/* 面板内容区：羊皮纸质感 */
+.stb-vic-panels {
+  background: #f4ecd8;
+  color: #2b1b17;
+  padding: 12px;
+  max-height: 450px;
+  overflow-y: auto;
+  box-shadow: inset 0 0 20px rgba(139,101,8,0.1);
+}
+.stb-vic-panel { display: none; animation: stb-vic-fade 0.3s ease; }
+@keyframes stb-vic-fade { from { opacity: 0; } to { opacity: 1; } }
+
+#stb-vic-t1:checked ~ .stb-vic-panels .stb-vic-p1,
+#stb-vic-t2:checked ~ .stb-vic-panels .stb-vic-p2,
+#stb-vic-t3:checked ~ .stb-vic-panels .stb-vic-p3,
+#stb-vic-t4:checked ~ .stb-vic-panels .stb-vic-p4,
+#stb-vic-t5:checked ~ .stb-vic-panels .stb-vic-p5 { display: block; }
+
+/* 基础信息网格 (主角信息) */
+.stb-vic-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  font-size: 12px;
+}
+.stb-vic-grid-item {
+  background: #fffdf5;
+  border: 1px solid #e8dcc8;
+  border-left: 4px solid #b5a642;
+  padding: 4px 8px;
+  border-radius: 2px;
+}
+.stb-vic-label { color: #8b4513; font-weight: bold; margin-right: 4px; }
+.stb-vic-value { color: #3d2b1f; }
+.stb-vic-full-width { grid-column: 1 / -1; }
+
+/* 属性仪表盘 */
+.stb-vic-attr-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 12px;
+}
+.stb-vic-attr-box {
+  background: #fffdf5;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  padding: 6px;
+  text-align: center;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+}
+.stb-vic-attr-name {
+  font-weight: bold;
+  color: #5c4033;
+  border-bottom: 1px solid #e8dcc8;
+  padding-bottom: 2px;
+  margin-bottom: 4px;
+  font-size: 11px;
+}
+.stb-vic-attr-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+.stb-vic-attr-val { font-size: 16px; font-family: monospace; color: #8b0000; font-weight: bold; }
+.stb-vic-attr-rank { font-size: 10px; color: #666; }
+.stb-vic-attr-box details > summary {
+  font-size: 10px;
+  color: #8b6508;
+  cursor: pointer;
+  list-style: none; /* 移除默认箭头 */
+  text-align: right;
+  padding-top: 2px;
+}
+.stb-vic-attr-box details > summary::-webkit-details-marker { display: none; } /* 兼容Chrome */
+.stb-vic-attr-box details > summary::before { content: "🔍 评价"; }
+.stb-vic-attr-box details[open] > summary::before { content: "收起评价"; }
+.stb-vic-attr-desc {
+  font-size: 10px;
+  color: #444;
+  margin-top: 4px;
+  text-align: left;
+  border-top: 1px dashed #ccc;
+  padding-top: 4px;
+  line-height: 1.4;
+}
+
+/* 动态列表 details/summary 样式 */
+.stb-vic-dynamic-list details {
+  background: #fffdf5;
+  border: 1px solid #e8dcc8;
+  border-radius: 3px;
+  margin-bottom: 6px;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+.stb-vic-dynamic-list summary {
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #5c4033;
+  cursor: pointer;
+  list-style-type: '⚙️ ';
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.stb-vic-dynamic-list details[open] > summary {
+  border-bottom: 1px solid #d4af37;
+  background-color: #f9f4e8;
+}
+.stb-vic-dynamic-list .summary-extra {
+  font-size: 10px;
+  color: #8b6508;
+  font-weight: normal;
+}
+.stb-vic-dynamic-list .details-content {
+  padding: 10px;
+  font-size: 11px;
+  line-height: 1.6;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.stb-vic-dynamic-list .details-content span {
+  font-weight: bold;
+  color: #8b4513;
+}
+.stb-vic-placeholder {
+  color: #999;
+  text-align: center;
+  padding: 20px;
+  font-style: italic;
+  font-size: 12px;
+}
+.stb-vic-section-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #8b4513;
+    border-bottom: 2px solid #d4af37;
+    margin: 16px 0 10px 0;
+    padding-bottom: 4px;
+}
+
+/* 滚动条美化 */
+.stb-vic-panels::-webkit-scrollbar { width: 6px; }
+.stb-vic-panels::-webkit-scrollbar-track { background: #e8dcc8; }
+.stb-vic-panels::-webkit-scrollbar-thumb { background: #b5a642; border-radius: 3px; }
+</style>
+
+<script type="module">
+  function populateCharacterData() {
+    const all_variables = getAllVariables();
+    const stat = _.get(all_variables, 'stat_data', {});
+
+    /* 全局信息 */
+    $('#val-time').text(_.get(stat, '全局信息.时间', '未知'));
+    $('#val-crown').text(_.get(stat, '全局信息.克朗', 0));
+    $('#val-location').text(_.get(stat, '全局信息.地点', '未知'));
+
+    /* 面板1: 主角信息 */
+    $('#val-name').text(_.get(stat, '主角信息.姓名', '未知'));
+    $('#val-gender').text(_.get(stat, '主角信息.性别', '未知'));
+    $('#val-age').text(_.get(stat, '主角信息.年龄', '未知'));
+    $('#val-race').text(_.get(stat, '主角信息.种族', '未知'));
+    $('#val-identity').text(_.get(stat, '主角信息.身份', '无'));
+    $('#val-faith').text(_.get(stat, '主角信息.信仰', '无'));
+    $('#val-class').text(_.get(stat, '主角信息.职业', '无'));
+    $('#val-adv-rank').text(_.get(stat, '主角信息.冒险者等级', '无'));
+    $('#val-bg-sup').text(_.get(stat, '主角信息.背景补充', '无'));
+
+    /* 面板2: 属性与技能 */
+    const attrs = ['力量', '敏捷', '体质', '智力', '感知', '魅力'];
+    attrs.forEach(attr => {
+      $(`#val-attr-${attr}-num`).text(_.get(stat, `主角信息.属性.${attr}.数值`, 0));
+      $(`#val-attr-${attr}-rank`).text(_.get(stat, `主角信息.属性.${attr}.位阶`, '未知'));
+      $(`#val-attr-${attr}-desc`).html(_.get(stat, `主角信息.属性.${attr}.评价`, '暂无评价'));
+    });
+
+    const skills = _.get(stat, '主角信息.技能与能力', {});
+    const skillsContainer = $('#skills-list');
+    skillsContainer.empty();
+    if (_.isEmpty(skills)) {
+        skillsContainer.html('<div class="stb-vic-placeholder">暂无技能记录</div>');
+    } else {
+        let html = '';
+        for (const [name, data] of Object.entries(skills)) {
+            html += `
+            <details>
+                <summary>
+                    <span>${name}</span>
+                    <span class="summary-extra">${_.get(data, '品质', '')}</span>
+                </summary>
+                <div class="details-content">${_.get(data, '描述', '无描述')}</div>
+            </details>`;
+        }
+        skillsContainer.html(html);
+    }
+
+
+    /* 面板3: 装备与背包 */
+    const equips = _.get(stat, '主角信息.装备', {});
+    const equipsContainer = $('#equips-list');
+    equipsContainer.empty();
+    if (_.isEmpty(equips)) {
+        equipsContainer.html('<div class="stb-vic-placeholder">未装备任何物品</div>');
+    } else {
+        let html = '';
+        for (const [name, data] of Object.entries(equips)) {
+            html += `
+            <details>
+                <summary>
+                    <span>${name}</span>
+                    <span class="summary-extra">${_.get(data, '品质', '')}</span>
+                </summary>
+                <div class="details-content">${_.get(data, '描述', '无描述')}</div>
+            </details>`;
+        }
+        equipsContainer.html(html);
+    }
+
+    const bags = _.get(stat, '主角信息.背包', {});
+    const bagsContainer = $('#bags-list');
+    bagsContainer.empty();
+    if (_.isEmpty(bags)) {
+        bagsContainer.html('<div class="stb-vic-placeholder">背包空空如也</div>');
+    } else {
+        let html = '';
+        for (const [name, data] of Object.entries(bags)) {
+            html += `
+            <details>
+                <summary>
+                    <span>${name} (${_.get(data, '数量', 1)})</span>
+                    <span class="summary-extra">${_.get(data, '品质', '')}</span>
+                </summary>
+                <div class="details-content">${_.get(data, '描述', '无描述')}</div>
+            </details>`;
+        }
+        bagsContainer.html(html);
+    }
+
+    /* 面板4: 任务列表 */
+    const tasks = _.get(stat, '任务列表.正在进行的任务', {});
+    const tasksContainer = $('#tasks-list');
+    tasksContainer.empty();
+    if (_.isEmpty(tasks)) {
+        tasksContainer.html('<div class="stb-vic-placeholder">当前没有任务</div>');
+    } else {
+        let html = '';
+        for (const [name, data] of Object.entries(tasks)) {
+            html += `
+            <details>
+                <summary>
+                    <span>${_.get(data, '等级', '特殊')} · ${name}</span>
+                    <span class="summary-extra">委托方: ${_.get(data, '委托方', '未知')}</span>
+                </summary>
+                <div class="details-content">
+                    <p><span>详细：</span>${_.get(data, '详细', '无')}</p>
+                    <p><span>目标：</span>${_.get(data, '目标', '无')}</p>
+                    <p><span>奖励：</span>${_.get(data, '奖励', '无')}</p>
+                </div>
+            </details>`;
+        }
+        tasksContainer.html(html);
+    }
+
+    /* 面板5: 人物列表 */
+    const npcs = _.get(stat, '人物列表', {});
+    const npcsContainer = $('#npcs-list');
+    npcsContainer.empty();
+    if (_.isEmpty(npcs)) {
+        npcsContainer.html('<div class="stb-vic-placeholder">暂未遇到重要人物</div>');
+    } else {
+        let html = '';
+        for (const [name, data] of Object.entries(npcs)) {
+            const inScene = _.get(data, '是否在场', false) ? ' [在场]' : '';
+            html += `
+            <details>
+                <summary>
+                    <span>${name} · ${_.get(data, '与玩家的关系', '未知')}${inScene}</span>
+                    <span class="summary-extra">好感: ${_.get(data, '好感度', 0)}</span>
+                </summary>
+                <div class="details-content">
+                    <p><span>性别:</span> ${_.get(data, '性别', '未知')} | <span>年龄:</span> ${_.get(data, '年龄', '未知')} | <span>种族:</span> ${_.get(data, '种族', '未知')} | <span>等级:</span> ${_.get(data, '等级', '未知')}</p>
+                    <p><span>身份:</span> ${_.get(data, '身份', '未知')}</p>
+                    <p><span>外貌:</span> ${_.get(data, '外貌特征', '无')}</p>
+                    <p><span>着装:</span> ${_.get(data, '着装', '无')}</p>
+                    <p><span>性格:</span> ${_.get(data, '性格概括', '无')}</p>
+                    <p><span>背景:</span> ${_.get(data, '背景故事', '无')}</p>
+                    <p><span>心里话:</span> <i>“${_.get(data, '心里话', '...')}”</i></p>
+                </div>
+            </details>`;
+        }
+        npcsContainer.html(html);
+    }
+  }
+
+  async function init() {
+    await waitGlobalInitialized('Mvu');
+    populateCharacterData();
+
+    eventOn(Mvu.events.VARIABLE_UPDATE_ENDED, () => {
+      populateCharacterData();
+    });
+  }
+
+  $(errorCatched(init));
+</script>
+</head>
+
+<body>
+<div class="stb-vic-wrap">
+  <!-- 全局信息 -->
+  <div class="stb-vic-header">
+    <div class="stb-vic-header-row">
+      <span>⏱️ <span class="stb-vic-highlight" id="val-time">读取中...</span></span>
+      <span>💰 <span class="stb-vic-highlight" id="val-crown">0</span> 克朗</span>
+    </div>
+    <div>📍 <span class="stb-vic-highlight" id="val-location">读取中...</span></div>
+  </div>
+
+  <!-- Tabs 控制 -->
+  <input type="radio" name="stb-vic-tabs" id="stb-vic-t1" checked>
+  <input type="radio" name="stb-vic-tabs" id="stb-vic-t2">
+  <input type="radio" name="stb-vic-tabs" id="stb-vic-t3">
+  <input type="radio" name="stb-vic-tabs" id="stb-vic-t4">
+  <input type="radio" name="stb-vic-tabs" id="stb-vic-t5">
+
+  <!-- 导航栏 -->
+  <div class="stb-vic-nav">
+    <label for="stb-vic-t1">👤 主角</label>
+    <label for="stb-vic-t2">⚔️ 属性</label>
+    <label for="stb-vic-t3">🎒 物品</label>
+    <label for="stb-vic-t4">📜 任务</label>
+    <label for="stb-vic-t5">👥 人物</label>
+  </div>
+
+  <!-- 面板内容 -->
+  <div class="stb-vic-panels">
+
+    <!-- 面板1: 主角信息 -->
+    <div class="stb-vic-panel stb-vic-p1">
+      <div class="stb-vic-grid">
+        <div class="stb-vic-grid-item"><span class="stb-vic-label">姓名:</span><span class="stb-vic-value" id="val-name">...</span></div>
+        <div class="stb-vic-grid-item"><span class="stb-vic-label">性别:</span><span class="stb-vic-value" id="val-gender">...</span></div>
+        <div class="stb-vic-grid-item"><span class="stb-vic-label">年龄:</span><span class="stb-vic-value" id="val-age">...</span></div>
+        <div class="stb-vic-grid-item"><span class="stb-vic-label">种族:</span><span class="stb-vic-value" id="val-race">...</span></div>
+        <div class="stb-vic-grid-item stb-vic-full-width"><span class="stb-vic-label">身份:</span><span class="stb-vic-value" id="val-identity">...</span></div>
+        <div class="stb-vic-grid-item stb-vic-full-width"><span class="stb-vic-label">职业:</span><span class="stb-vic-value" id="val-class">...</span></div>
+        <div class="stb-vic-grid-item"><span class="stb-vic-label">信仰:</span><span class="stb-vic-value" id="val-faith">...</span></div>
+        <div class="stb-vic-grid-item"><span class="stb-vic-label">冒险者:</span><span class="stb-vic-value" id="val-adv-rank">...</span></div>
+      </div>
+      <div class="stb-vic-section-title">背景补充</div>
+      <div class="stb-vic-grid-item stb-vic-full-width" style="font-size: 11px; line-height: 1.5;" id="val-bg-sup">...</div>
+    </div>
+
+    <!-- 面板2: 属性与技能 -->
+    <div class="stb-vic-panel stb-vic-p2">
+      <div class="stb-vic-attr-grid">
+        <!-- 力量 -->
+        <div class="stb-vic-attr-box">
+          <div class="stb-vic-attr-name">力量</div>
+          <div class="stb-vic-attr-row">
+            <span class="stb-vic-attr-val" id="val-attr-力量-num">-</span>
+            <span class="stb-vic-attr-rank" id="val-attr-力量-rank">-</span>
+          </div>
+          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-力量-desc">-</div></details>
+        </div>
+        <!-- 敏捷 -->
+        <div class="stb-vic-attr-box">
+          <div class="stb-vic-attr-name">敏捷</div>
+          <div class="stb-vic-attr-row">
+            <span class="stb-vic-attr-val" id="val-attr-敏捷-num">-</span>
+            <span class="stb-vic-attr-rank" id="val-attr-敏捷-rank">-</span>
+          </div>
+          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-敏捷-desc">-</div></details>
+        </div>
+        <!-- 体质 -->
+        <div class="stb-vic-attr-box">
+          <div class="stb-vic-attr-name">体质</div>
+          <div class="stb-vic-attr-row">
+            <span class="stb-vic-attr-val" id="val-attr-体质-num">-</span>
+            <span class="stb-vic-attr-rank" id="val-attr-体质-rank">-</span>
+          </div>
+          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-体质-desc">-</div></details>
+        </div>
+        <!-- 智力 -->
+        <div class="stb-vic-attr-box">
+          <div class="stb-vic-attr-name">智力</div>
+          <div class="stb-vic-attr-row">
+            <span class="stb-vic-attr-val" id="val-attr-智力-num">-</span>
+            <span class="stb-vic-attr-rank" id="val-attr-智力-rank">-</span>
+          </div>
+          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-智力-desc">-</div></details>
+        </div>
+        <!-- 感知 -->
+        <div class="stb-vic-attr-box">
+          <div class="stb-vic-attr-name">感知</div>
+          <div class="stb-vic-attr-row">
+            <span class="stb-vic-attr-val" id="val-attr-感知-num">-</span>
+            <span class="stb-vic-attr-rank" id="val-attr-感知-rank">-</span>
+          </div>
+          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-感知-desc">-</div></details>
+        </div>
+        <!-- 魅力 -->
+        <div class="stb-vic-attr-box">
+          <div class="stb-vic-attr-name">魅力</div>
+          <div class="stb-vic-attr-row">
+            <span class="stb-vic-attr-val" id="val-attr-魅力-num">-</span>
+            <span class="stb-vic-attr-rank" id="val-attr-魅力-rank">-</span>
+          </div>
+          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-魅力-desc">-</div></details>
+        </div>
+      </div>
+      <div class="stb-vic-section-title">技能与能力</div>
+      <div class="stb-vic-dynamic-list" id="skills-list">读取中...</div>
+    </div>
+
+    <!-- 面板3: 装备与背包 -->
+    <div class="stb-vic-panel stb-vic-p3">
+        <div class="stb-vic-section-title">当前装备</div>
+        <div class="stb-vic-dynamic-list" id="equips-list">读取中...</div>
+        <div class="stb-vic-section-title">背包物品</div>
+        <div class="stb-vic-dynamic-list" id="bags-list">读取中...</div>
+    </div>
+
+    <!-- 面板4: 任务列表 -->
+    <div class="stb-vic-panel stb-vic-p4">
+        <div class="stb-vic-section-title">正在进行的任务</div>
+        <div class="stb-vic-dynamic-list" id="tasks-list">读取中...</div>
+    </div>
+
+    <!-- 面板5: 人物列表 -->
+    <div class="stb-vic-panel stb-vic-p5">
+        <div class="stb-vic-section-title">人物关系</div>
+        <div class="stb-vic-dynamic-list" id="npcs-list">读取中...</div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
+```
