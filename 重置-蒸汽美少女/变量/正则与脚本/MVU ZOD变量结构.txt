@@ -55,7 +55,8 @@ export const Schema = z.object({
       z.string().describe('技能名称'),
       z.object({
         品质: z.string(),
-        描述: z.string()
+        描述: z.string(),
+        评价: z.string()
       })
     ).prefault({}),
 

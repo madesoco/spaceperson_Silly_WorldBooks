@@ -1,1 +1,0 @@
-/<content>\s*((?:(?!<\/?content>).)*)\s*<\/content>(?![\s\S]*<\/?content>)/gsi

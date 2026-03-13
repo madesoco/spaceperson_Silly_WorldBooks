@@ -82,7 +82,7 @@ body {
 .stb-vic-panels {
   background: #f4ecd8;
   color: #2b1b17;
-  padding: 12px;
+  padding: 10px;
   max-height: 450px;
   overflow-y: auto;
   box-shadow: inset 0 0 20px rgba(139,101,8,0.1);
@@ -117,7 +117,7 @@ body {
 /* 属性仪表盘 */
 .stb-vic-attr-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 12px;
 }
 .stb-vic-attr-box {
@@ -127,6 +127,8 @@ body {
   padding: 6px;
   text-align: center;
   box-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
 }
 .stb-vic-attr-name {
   font-weight: bold;
@@ -144,17 +146,6 @@ body {
 }
 .stb-vic-attr-val { font-size: 16px; font-family: monospace; color: #8b0000; font-weight: bold; }
 .stb-vic-attr-rank { font-size: 10px; color: #666; }
-.stb-vic-attr-box details > summary {
-  font-size: 10px;
-  color: #8b6508;
-  cursor: pointer;
-  list-style: none; /* 移除默认箭头 */
-  text-align: right;
-  padding-top: 2px;
-}
-.stb-vic-attr-box details > summary::-webkit-details-marker { display: none; } /* 兼容Chrome */
-.stb-vic-attr-box details > summary::before { content: "🔍 评价"; }
-.stb-vic-attr-box details[open] > summary::before { content: "收起评价"; }
 .stb-vic-attr-desc {
   font-size: 10px;
   color: #444;
@@ -163,6 +154,7 @@ body {
   border-top: 1px dashed #ccc;
   padding-top: 4px;
   line-height: 1.4;
+  flex-grow: 1; /* 占据剩余空间 */
 }
 
 /* 动态列表 details/summary 样式 */
@@ -174,7 +166,7 @@ body {
   box-shadow: 1px 1px 2px rgba(0,0,0,0.05);
 }
 .stb-vic-dynamic-list summary {
-  padding: 6px 10px;
+  padding: 6px 8px;
   font-size: 12px;
   font-weight: bold;
   color: #5c4033;
@@ -194,9 +186,9 @@ body {
   font-weight: normal;
 }
 .stb-vic-dynamic-list .details-content {
-  padding: 10px;
+  padding: 8px 10px;
   font-size: 11px;
-  line-height: 1.6;
+  line-height: 1.5;
   color: #333;
   white-space: pre-wrap;
   word-break: break-all;
@@ -205,10 +197,23 @@ body {
   font-weight: bold;
   color: #8b4513;
 }
+/* 分隔线样式 */
+.stb-vic-divider {
+  border: 0;
+  border-top: 1px dashed #ccc;
+  margin: 6px 0;
+}
+/* 评价文本样式（已修改为默认字体，取消斜体） */
+.stb-vic-eval-text {
+  color: #666;
+  font-family: sans-serif;
+  font-style: normal;
+}
+
 .stb-vic-placeholder {
   color: #999;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   font-style: italic;
   font-size: 12px;
 }
@@ -217,19 +222,28 @@ body {
     font-weight: bold;
     color: #8b4513;
     border-bottom: 2px solid #d4af37;
-    margin: 16px 0 10px 0;
+    margin: 12px 0 8px 0;
     padding-bottom: 4px;
 }
 
-/* 滚动条美化 */
-.stb-vic-panels::-webkit-scrollbar { width: 6px; }
-.stb-vic-panels::-webkit-scrollbar-track { background: #e8dcc8; }
-.stb-vic-panels::-webkit-scrollbar-thumb { background: #b5a642; border-radius: 3px; }
+.delete-btn {
+    background: #d9534f;
+    color: white;
+    border: none;
+    padding: 2px 6px;
+    font-size: 10px;
+    cursor: pointer;
+    border-radius: 2px;
+    margin-left: 8px;
+}
+.delete-btn:hover {
+    background: #c9302c;
+}
 </style>
 
 <script type="module">
   function populateCharacterData() {
-    const all_variables = getAllVariables();
+    const all_variables = getVariables({ type: 'message', message_id: getCurrentMessageId() });
     const stat = _.get(all_variables, 'stat_data', {});
 
     /* 全局信息 */
@@ -264,18 +278,26 @@ body {
     } else {
         let html = '';
         for (const [name, data] of Object.entries(skills)) {
+            const desc = _.get(data, '描述', '无描述');
+            const evalText = _.get(data, '评价', '');
+
+            let contentHtml = desc;
+            if (evalText) {
+                contentHtml += `<hr class="stb-vic-divider"/><span class="stb-vic-eval-text">“${evalText}”</span>`;
+            }
+
             html += `
             <details>
                 <summary>
                     <span>${name}</span>
                     <span class="summary-extra">${_.get(data, '品质', '')}</span>
+                    <button class="delete-btn" data-name="${name}" data-type="skill">删除</button>
                 </summary>
-                <div class="details-content">${_.get(data, '描述', '无描述')}</div>
+                <div class="details-content">${contentHtml}</div>
             </details>`;
         }
         skillsContainer.html(html);
     }
-
 
     /* 面板3: 装备与背包 */
     const equips = _.get(stat, '主角信息.装备', {});
@@ -291,6 +313,7 @@ body {
                 <summary>
                     <span>${name}</span>
                     <span class="summary-extra">${_.get(data, '品质', '')}</span>
+                    <button class="delete-btn" data-name="${name}" data-type="equip">删除</button>
                 </summary>
                 <div class="details-content">${_.get(data, '描述', '无描述')}</div>
             </details>`;
@@ -311,6 +334,7 @@ body {
                 <summary>
                     <span>${name} (${_.get(data, '数量', 1)})</span>
                     <span class="summary-extra">${_.get(data, '品质', '')}</span>
+                    <button class="delete-btn" data-name="${name}" data-type="bag">删除</button>
                 </summary>
                 <div class="details-content">${_.get(data, '描述', '无描述')}</div>
             </details>`;
@@ -332,6 +356,7 @@ body {
                 <summary>
                     <span>${_.get(data, '等级', '特殊')} · ${name}</span>
                     <span class="summary-extra">委托方: ${_.get(data, '委托方', '未知')}</span>
+                    <button class="delete-btn" data-name="${name}" data-type="task">删除</button>
                 </summary>
                 <div class="details-content">
                     <p><span>详细：</span>${_.get(data, '详细', '无')}</p>
@@ -358,6 +383,7 @@ body {
                 <summary>
                     <span>${name} · ${_.get(data, '与玩家的关系', '未知')}${inScene}</span>
                     <span class="summary-extra">好感: ${_.get(data, '好感度', 0)}</span>
+                    <button class="delete-btn" data-name="${name}" data-type="npc">删除</button>
                 </summary>
                 <div class="details-content">
                     <p><span>性别:</span> ${_.get(data, '性别', '未知')} | <span>年龄:</span> ${_.get(data, '年龄', '未知')} | <span>种族:</span> ${_.get(data, '种族', '未知')} | <span>等级:</span> ${_.get(data, '等级', '未知')}</p>
@@ -366,7 +392,7 @@ body {
                     <p><span>着装:</span> ${_.get(data, '着装', '无')}</p>
                     <p><span>性格:</span> ${_.get(data, '性格概括', '无')}</p>
                     <p><span>背景:</span> ${_.get(data, '背景故事', '无')}</p>
-                    <p><span>心里话:</span> <i>“${_.get(data, '心里话', '...')}”</i></p>
+                    <p><span>心里话:</span> <span class="stb-vic-eval-text">“${_.get(data, '心里话', '...')}”</span></p>
                 </div>
             </details>`;
         }
@@ -380,6 +406,51 @@ body {
 
     eventOn(Mvu.events.VARIABLE_UPDATE_ENDED, () => {
       populateCharacterData();
+    });
+
+    // 添加删除按钮事件监听器
+    $(document).on('click', '.delete-btn', function() {
+      const name = $(this).data('name');
+      const type = $(this).data('type');
+      let itemType = '项目';
+      let path = '';
+
+      switch(type) {
+        case 'skill':
+          itemType = '技能';
+          path = '主角信息.技能与能力';
+          break;
+        case 'equip':
+          itemType = '装备';
+          path = '主角信息.装备';
+          break;
+        case 'bag':
+          itemType = '背包物品';
+          path = '主角信息.背包';
+          break;
+        case 'task':
+          itemType = '任务';
+          path = '任务列表.正在进行的任务';
+          break;
+        case 'npc':
+        default:
+          itemType = '人物';
+          path = '人物列表';
+          break;
+      }
+
+      if (confirm(`确定要删除${itemType} "${name}" 的所有信息吗？此操作不可撤销。`)) {
+        const all_variables = getVariables({ type: 'message', message_id: getCurrentMessageId() });
+        const stat = _.get(all_variables, 'stat_data', {});
+        const targetObj = _.get(stat, path, {});
+        if (targetObj[name]) {
+          delete targetObj[name];
+          _.set(stat, path, targetObj);
+          replaceVariables(all_variables, { type: 'message', message_id: getCurrentMessageId() });
+          // 重新填充数据
+          populateCharacterData();
+        }
+      }
     });
   }
 
@@ -443,7 +514,7 @@ body {
             <span class="stb-vic-attr-val" id="val-attr-力量-num">-</span>
             <span class="stb-vic-attr-rank" id="val-attr-力量-rank">-</span>
           </div>
-          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-力量-desc">-</div></details>
+          <div class="stb-vic-attr-desc" id="val-attr-力量-desc">-</div>
         </div>
         <!-- 敏捷 -->
         <div class="stb-vic-attr-box">
@@ -452,7 +523,7 @@ body {
             <span class="stb-vic-attr-val" id="val-attr-敏捷-num">-</span>
             <span class="stb-vic-attr-rank" id="val-attr-敏捷-rank">-</span>
           </div>
-          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-敏捷-desc">-</div></details>
+          <div class="stb-vic-attr-desc" id="val-attr-敏捷-desc">-</div>
         </div>
         <!-- 体质 -->
         <div class="stb-vic-attr-box">
@@ -461,7 +532,7 @@ body {
             <span class="stb-vic-attr-val" id="val-attr-体质-num">-</span>
             <span class="stb-vic-attr-rank" id="val-attr-体质-rank">-</span>
           </div>
-          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-体质-desc">-</div></details>
+          <div class="stb-vic-attr-desc" id="val-attr-体质-desc">-</div>
         </div>
         <!-- 智力 -->
         <div class="stb-vic-attr-box">
@@ -470,7 +541,7 @@ body {
             <span class="stb-vic-attr-val" id="val-attr-智力-num">-</span>
             <span class="stb-vic-attr-rank" id="val-attr-智力-rank">-</span>
           </div>
-          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-智力-desc">-</div></details>
+          <div class="stb-vic-attr-desc" id="val-attr-智力-desc">-</div>
         </div>
         <!-- 感知 -->
         <div class="stb-vic-attr-box">
@@ -479,7 +550,7 @@ body {
             <span class="stb-vic-attr-val" id="val-attr-感知-num">-</span>
             <span class="stb-vic-attr-rank" id="val-attr-感知-rank">-</span>
           </div>
-          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-感知-desc">-</div></details>
+          <div class="stb-vic-attr-desc" id="val-attr-感知-desc">-</div>
         </div>
         <!-- 魅力 -->
         <div class="stb-vic-attr-box">
@@ -488,7 +559,7 @@ body {
             <span class="stb-vic-attr-val" id="val-attr-魅力-num">-</span>
             <span class="stb-vic-attr-rank" id="val-attr-魅力-rank">-</span>
           </div>
-          <details><summary></summary><div class="stb-vic-attr-desc" id="val-attr-魅力-desc">-</div></details>
+          <div class="stb-vic-attr-desc" id="val-attr-魅力-desc">-</div>
         </div>
       </div>
       <div class="stb-vic-section-title">技能与能力</div>
