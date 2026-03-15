@@ -1,0 +1,15 @@
+{
+  "id": "112ca8f7-f186-483f-84b3-730ef81ff3e9",
+  "scriptName": "【界面】全局前端美化",
+  "findRegex": "^((?!【开局信息】)[\\s\\S]*?\\S)\\s*$",
+  "replaceString": "<div class=\"steampunk-global-wrapper\">$1</div>\n\n<style>\n    /* ========== 全局蒸汽朋克底板 ========== */\n    .steampunk-global-wrapper {\n        max-width: 100%;\n        margin: 5px 0;\n        padding: 28px 35px;\n        background-color: #1a110b; /* 深暗木色背景 */\n        border: 2px solid #8b6508;\n        border-image-slice: 1;\n        border-image-source: linear-gradient(135deg, #8b6508 0%, #5c4033 50%, #8b6508 100%);\n        box-shadow: 0 4px 8px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.9);\n        color: #e8dcc8; /* 米黄色文字 */\n        font-family: 'Georgia', 'Times New Roman', serif;\n        line-height: 1.9;\n        font-size: 15px;\n    }\n\n    /* ========== 基础文本排版 ========== */\n    /* 赋予全局普通文字默认排版，让它直接具备小说的质感 */\n    .steampunk-global-wrapper > p {\n        margin-bottom: 1em;\n        text-align: justify;\n        text-indent: 2em; /* 全局首行缩进 */\n    }\n\n    .steampunk-global-wrapper > p:last-child {\n        margin-bottom: 0;\n    }\n\n    /* 兼容性保护：如果是内部已经被其他美化处理过的容器，撤销强制缩进，防止样式打架 */\n    .steampunk-global-wrapper div p,\n    .steampunk-global-wrapper [class*=\"container\"] p {\n        text-indent: inherit;\n    }\n</style>\n",
+  "trimStrings": [],
+  "placement": [2],
+  "disabled": true,
+  "markdownOnly": true,
+  "promptOnly": false,
+  "runOnEdit": true,
+  "substituteRegex": 0,
+  "minDepth": null,
+  "maxDepth": 20
+}

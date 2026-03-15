@@ -103,7 +103,7 @@ export const Schema = z.object({
       着装: z.string(),
       性格概括: z.string(),
       背景故事: z.string(),
-      好感度: z.coerce.number().transform(v => _.clamp(v, 0, 100)).prefault(10),
+      好感度: z.coerce.number().transform(v => _.clamp(v, -100, 100)).prefault(0),
       与玩家的关系: z.string(),
       心里话: z.string(),
       是否在场: z.boolean().prefault(false)

@@ -1,0 +1,141 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cinzel+Decorative:wght@700&family=EB+Garamond&display=swap" rel="stylesheet">
+
+<div data-steampunk style="
+  width: 95%;
+  max-width: 1200px;
+  min-height: 200px;
+  margin: 5px auto;
+  position: relative;
+  overflow: hidden;
+  contain: layout paint;
+  /* 修改点：减小外层容器的内边距 */
+  padding: 10px;
+  background: linear-gradient(165deg, #1a110b, #2c1e16);
+  border: 12px solid #4a3320;
+  border-radius: 8px;
+  box-shadow:
+    0 0 40px rgba(139, 101, 8, 0.4),
+    inset 0 0 30px rgba(0, 0, 0, 0.8);
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: #e8dcc8;
+">
+  <!-- 底部光晕 -->
+  <div data-glow style="
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(120% 80% at 50% 50%, rgba(139, 101, 8, 0.25), transparent 60%);
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+  "></div>
+
+  <!-- 网格纹理 -->
+  <div data-grid style="
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, rgba(232, 220, 200, 0.05) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(232, 220, 200, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  "></div>
+
+  <!-- 内层主卡片 -->
+  <div data-card style="
+    position: relative;
+    z-index: 1;
+    background: rgba(26, 17, 11, 0.95);
+    border: 3px solid rgba(139, 101, 8, 0.5);
+    border-radius: 6px;
+    /* 修改点：大幅减小内边距以释放空间 */
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 80px;
+  ">
+
+    <!-- 正文内容区，加入了换行修复属性 -->
+    <div style="
+      width: 100%;
+      position: relative;
+      z-index: 2;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #e8dcc8;
+      text-align: justify;
+      white-space: pre-wrap; /* 核心修复：保留文本原本的换行符 */
+    ">$1</div>
+
+    <!-- 左下角装饰色块 -->
+    <div style="
+      position: absolute;
+      bottom: 5px;
+      left: 5px;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle at bottom left, #8b6508 10%, transparent 60%);
+      border-radius: 0 0 0 25px;
+      opacity: 0.6;
+      z-index: 0;
+    "></div>
+
+    <!-- 右下角装饰色块 -->
+    <div style="
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle at bottom right, #5c4033 10%, transparent 60%);
+      border-radius: 0 0 25px 0;
+      opacity: 0.6;
+      z-index: 0;
+    "></div>
+
+    <!-- 悬浮光点 1 -->
+    <div style="
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle, white 20%, #e8dcc8 60%, transparent 80%);
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: subtleSparkle 6s infinite linear;
+      z-index: 0;
+    "></div>
+
+    <!-- 悬浮光点 2 -->
+    <div style="
+      position: absolute;
+      bottom: 15px;
+      left: 20px;
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, white 20%, #8b6508 60%, transparent 80%);
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: subtleSparkle 7s infinite linear reverse;
+      animation-delay: 1s;
+      z-index: 0;
+    "></div>
+  </div>
+
+  <style>
+    @keyframes subtleSparkle {
+      0% { transform: scale(0.8) rotate(0deg); opacity: 0.6; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 0.9; }
+      100% { transform: scale(0.8) rotate(360deg); opacity: 0.6; }
+    }
+
+    /* 针对可能存在的 p 标签做兼容保护 */
+    div[data-steampunk] p {
+      margin-bottom: 1em;
+      text-indent: 2em;
+    }
+  </style>
+</div>

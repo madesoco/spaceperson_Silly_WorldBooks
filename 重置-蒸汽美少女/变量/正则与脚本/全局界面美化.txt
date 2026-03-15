@@ -1,0 +1,55 @@
+<div class="steampunk-global-wrapper">
+$1
+</div>
+
+<style>
+    /* ========== 全局蒸汽朋克底板 ========== */
+    .steampunk-global-wrapper {
+        max-width: 100%;
+        margin: 5px 0;
+        padding: 28px 35px;
+        background-color: #1a110b;
+        border: 2px solid;
+        border-image-slice: 1;
+        border-image-source: linear-gradient(135deg, #8b6508 0%, #5c4033 50%, #8b6508 100%);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.9);
+        color: #e8dcc8;
+        font-family: 'Georgia', 'Times New Roman', serif;
+        line-height: 1.9;
+        font-size: 15px;
+        box-sizing: border-box;
+        white-space: pre-line;
+    }
+
+    /* ========== 基础文本排版 ========== */
+    .steampunk-global-wrapper > p {
+        margin-bottom: 1em;
+        text-align: justify;
+        text-indent: 2em;
+    }
+
+    .steampunk-global-wrapper > p:last-child {
+        margin-bottom: 0;
+    }
+
+    /* 兼容性保护 */
+    .steampunk-global-wrapper div p,
+    .steampunk-global-wrapper [class*="container"] p {
+        text-indent: inherit;
+    }
+
+    /* ========== 手机端适配 ========== */
+    @media (max-width: 768px) {
+        .steampunk-global-wrapper {
+            padding: 20px 22px;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .steampunk-global-wrapper {
+            padding: 15px 18px;
+        }
+    }
+</style>

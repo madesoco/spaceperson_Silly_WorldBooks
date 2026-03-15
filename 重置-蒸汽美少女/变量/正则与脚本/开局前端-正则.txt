@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>米拉比里斯之心 - 角色与纪元生成器</title>
     <style>
+        /* ========== 基础设定同步 ========== */
         * {
             margin: 0;
             padding: 0;
@@ -12,34 +13,37 @@
         }
 
         body {
-            font-family: "Microsoft YaHei", sans-serif;
+            font-family: "Georgia", "Times New Roman", serif;
             background: transparent;
             padding: 10px;
-            color: #d4d4d4;
+            color: #e8dcc8;
         }
 
+        /* 主容器同步 */
         .creator-container {
             max-width: 100%;
             margin: 0 auto;
-            background: rgba(25, 25, 30, 0.85);
-            border: 1px solid #444;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            background: #1a110b;
+            border: 2px solid #8b6508;
+            border-image: linear-gradient(135deg, #8b6508 0%, #5c4033 50%, #8b6508 100%) 1;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.8), inset 0 0 15px rgba(0,0,0,0.9);
             display: flex;
             flex-direction: column;
             overflow: hidden;
             font-size: 14px;
         }
 
+        /* 顶部标题栏同步 */
         .creator-header {
-            background: linear-gradient(to right, #2c3e50, #1a1a1a);
+            background: linear-gradient(180deg, #110b07 0%, #1a110b 100%);
+            border-bottom: 2px solid #5c4033;
             padding: 15px;
             text-align: center;
-            border-bottom: 1px solid #555;
             font-weight: bold;
             font-size: 18px;
-            color: #e0e0e0;
+            color: #d4af37;
             letter-spacing: 2px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
         }
 
         .creator-content {
@@ -49,17 +53,19 @@
             gap: 20px;
         }
 
+        /* 内部面板块同步 */
         .panel-section {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid #333;
-            border-radius: 6px;
+            background: #231812;
+            border: 1px solid #3e2a1e;
+            border-radius: 4px;
             padding: 15px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
         }
 
         .section-title {
             font-size: 16px;
-            color: #bdc3c7;
-            border-bottom: 1px dashed #555;
+            color: #b5a642;
+            border-bottom: 1px dashed #443328;
             padding-bottom: 8px;
             margin-bottom: 15px;
             font-weight: bold;
@@ -85,31 +91,57 @@
         }
 
         label {
-            color: #aaa;
+            color: #d4af37;
             font-size: 12px;
+            font-weight: bold;
         }
 
+        /* 技能提示小字 */
+        .skill-hint {
+            font-size: 11px;
+            color: #8b6508;
+            margin-top: 2px;
+            font-style: italic;
+        }
+
+        /* 输入框同步 */
         input[type="text"], input[type="number"], select, textarea {
             width: 100%;
-            background: #1e1e1e;
-            border: 1px solid #555;
-            color: #e0e0e0;
+            background: #2a1f18;
+            border: 1px solid #5c4033;
+            color: #e8dcc8;
             padding: 8px;
-            border-radius: 4px;
+            border-radius: 2px;
             font-family: inherit;
+            transition: all 0.3s;
         }
 
         input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #7f8c8d;
+            border-color: #d4af37;
+            box-shadow: 0 0 5px rgba(212,175,55,0.3);
         }
 
         textarea {
             resize: vertical;
-            min-height: 60px;
+            min-height: 80px;
         }
 
-        /* 属性分配区 */
+        textarea::-webkit-scrollbar {
+            width: 6px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: #1a110b;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background: #5c4033;
+            border-radius: 3px;
+        }
+        textarea::-webkit-scrollbar-thumb:hover {
+            background: #8b6508;
+        }
+
+        /* 属性分配区同步 */
         .attr-header {
             display: flex;
             justify-content: space-between;
@@ -126,24 +158,32 @@
         }
 
         .diff-btn {
-            background: #2c3e50;
-            border: 1px solid #34495e;
-            color: #ccc;
+            background: #2a1f18;
+            border: 1px solid #5c4033;
+            color: #b5a642;
             padding: 5px 10px;
-            border-radius: 4px;
+            border-radius: 2px;
             cursor: pointer;
             font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .diff-btn:hover {
+            background: #3e2a1e;
+            color: #f4ecd8;
         }
 
         .diff-btn.active {
-            background: #2980b9;
-            color: #fff;
-            border-color: #3498db;
+            background: #231812;
+            color: #d4af37;
+            border-color: #8b6508;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+            font-weight: bold;
         }
 
         .points-display {
             font-weight: bold;
-            color: #f1c40f;
+            color: #d4af37;
         }
 
         .attr-grid {
@@ -153,13 +193,14 @@
         }
 
         .attr-item {
-            background: #111;
+            background: #2a1f18;
             padding: 8px;
-            border-radius: 4px;
+            border-radius: 2px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 1px solid #333;
+            border: 1px solid #3e2a1e;
+            border-left: 3px solid #8b6508;
         }
 
         .attr-controls {
@@ -169,66 +210,72 @@
         }
 
         .attr-btn {
-            background: #333;
-            border: none;
-            color: #fff;
+            background: #3e2a1e;
+            border: 1px solid #5c4033;
+            color: #e8dcc8;
             width: 20px;
             height: 20px;
-            border-radius: 3px;
+            border-radius: 2px;
             cursor: pointer;
             line-height: 1;
+            transition: background 0.2s;
         }
 
-        .attr-btn:hover {
-            background: #555;
+        .attr-btn:hover:not(:disabled) {
+            background: #5c4033;
         }
 
         .attr-btn:disabled {
-            background: #222;
+            background: #110b07;
+            border-color: #2a1f18;
             color: #555;
             cursor: not-allowed;
         }
 
-        /* 剧情描述框 */
+        /* 剧情描述框同步 */
         .story-desc {
-            background: #1a1a1a;
+            background: #1a110b;
             padding: 10px;
-            border-left: 3px solid #2980b9;
+            border-left: 3px solid #8b6508;
             margin-top: 10px;
             font-size: 13px;
-            color: #bbb;
+            color: #d4d4d4;
             line-height: 1.5;
+            box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
         }
 
-        /* 底部操作 */
+        /* 底部操作区同步 */
         .creator-footer {
             padding: 15px;
-            background: #1a1a1a;
-            border-top: 1px solid #444;
+            background: #110b07;
+            border-top: 2px solid #3e2a1e;
             display: flex;
             justify-content: flex-end;
         }
 
         .submit-btn {
-            background: #27ae60;
-            color: white;
-            border: none;
+            background: #5c4033;
+            color: #e8dcc8;
+            border: 1px solid #8b6508;
             padding: 10px 25px;
-            border-radius: 5px;
+            border-radius: 3px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
+            font-family: inherit;
         }
 
         .submit-btn:hover:not(:disabled) {
-            background: #2ecc71;
-            box-shadow: 0 0 10px rgba(46, 204, 113, 0.5);
+            background: #8b6508;
+            color: #fffdf5;
+            box-shadow: 0 0 10px rgba(139,101,8,0.5);
         }
 
         .submit-btn:disabled {
-            background: #444;
-            color: #777;
+            background: #1a110b;
+            border-color: #3e2a1e;
+            color: #555;
             cursor: not-allowed;
         }
 
@@ -240,17 +287,19 @@
         }
 
         .small-btn {
-            background: #444;
-            color: #eee;
-            border: none;
+            background: #3e2a1e;
+            color: #b5a642;
+            border: 1px solid #5c4033;
             padding: 4px 8px;
-            border-radius: 3px;
+            border-radius: 2px;
             cursor: pointer;
-            font-size: 12px;
+            font-size: 11px;
+            transition: all 0.2s;
         }
 
         .small-btn:hover {
-            background: #666;
+            background: #5c4033;
+            color: #e8dcc8;
         }
     </style>
 </head>
@@ -266,7 +315,7 @@
                 <div class="section-title">角色核心档案</div>
                 <div class="form-row">
                     <div class="form-group">
-                        <label>姓名 <span style="color:#e74c3c">*</span></label>
+                        <label>姓名 <span style="color:#cd5c5c">*</span></label>
                         <input type="text" id="v-name" placeholder="请输入名字" oninput="checkForm()">
                     </div>
                     <div class="form-group">
@@ -285,7 +334,7 @@
                 <div class="form-row">
                     <div class="form-group">
                         <label>种族</label>
-                        <select id="v-race">
+                        <select id="v-race" onchange="handleRaceChange()">
                             <option value="人类">人类</option>
                             <option value="亚人">亚人(需在背景注明亚种)</option>
                             <option value="龙娘">龙娘(需在背景注明龙种)</option>
@@ -298,18 +347,72 @@
                             <option value="人偶">人偶</option>
                             <option value="女巫">女巫</option>
                             <option value="哥布林">哥布林</option>
-                            <option value="自定义">自定义</option>
+                            <option value="自定义">--自定义种族--</option>
                         </select>
+                        <div class="skill-hint" id="hint-race">先天特性绑定中...</div>
                     </div>
                     <div class="form-group">
                         <label>职业</label>
-                        <input type="text" id="v-class" placeholder="如：法师、战士..." value="无">
+                        <select id="v-class" onchange="handleClassChange()">
+                            <option value="无">无</option>
+                            <option value="塑能法师">塑能法师</option>
+                            <option value="变化法师">变化法师</option>
+                            <option value="死灵法师">死灵法师</option>
+                            <option value="牧师">牧师</option>
+                            <option value="工程师">工程师</option>
+                            <option value="盗贼">盗贼</option>
+                            <option value="战士">战士</option>
+                            <option value="剑士">剑士</option>
+                            <option value="射手">射手</option>
+                            <option value="游侠">游侠</option>
+                            <option value="诗人">诗人</option>
+                            <option value="自定义">--自定义职业--</option>
+                        </select>
+                        <div class="skill-hint" id="hint-class">职业技能未选择...</div>
                     </div>
                     <div class="form-group">
                         <label>信仰</label>
-                        <input type="text" id="v-faith" placeholder="如魔法女神、欲望女神..." value="无">
+                        <select id="v-faith" onchange="handleFaithChange()">
+                            <option value="无">无</option>
+                            <option value="魔法女神-米斯特拉">魔法女神-米斯特拉</option>
+                            <option value="正义女神-阿斯特莱雅">正义女神-阿斯特莱雅</option>
+                            <option value="欲望女士-莉莉丝">欲望女士-莉莉丝</option>
+                            <option value="金币与贸易女神-普罗菲特">金币与贸易女神-普罗菲特</option>
+                            <option value="谋杀女士-菲卡">谋杀女士-菲卡</option>
+                            <option value="少女保护之神-塞西莉亚">少女保护之神-塞西莉亚</option>
+                            <option value="谎言女神-多洛莉丝">谎言女神-多洛莉丝</option>
+                            <option value="知识女士-密涅瓦">知识女士-密涅瓦</option>
+                            <option value="死亡女士-苍姬">死亡女士-苍姬</option>
+                            <option value="人偶女神-爱丽丝">人偶女神-爱丽丝</option>
+                            <option value="苍白女士-艾达">苍白女士-艾达</option>
+                            <option value="艺术与射手之精灵神-阿波罗">精灵神-阿波罗</option>
+                            <option value="工匠与艺术之矮人神-杜林">矮人神-杜林</option>
+                            <option value="战争与生育之神-格罗玛什">兽人神-格罗玛什</option>
+                            <option value="自定义">--自定义信仰--</option>
+                        </select>
                     </div>
                 </div>
+
+                <!-- 自定义系列附加输入框 -->
+                <div class="form-row" id="custom-race-row" style="display:none;">
+                    <div class="form-group full-width">
+                        <label>自定义种族名称</label>
+                        <input type="text" id="v-custom-race" placeholder="请输入你的自定义种族" oninput="checkForm()">
+                    </div>
+                </div>
+                <div class="form-row" id="custom-class-row" style="display:none;">
+                    <div class="form-group full-width">
+                        <label>自定义职业名称</label>
+                        <input type="text" id="v-custom-class" placeholder="请输入你的自定义职业" oninput="checkForm()">
+                    </div>
+                </div>
+                <div class="form-row" id="custom-faith-row" style="display:none;">
+                    <div class="form-group full-width">
+                        <label>自定义信仰对象</label>
+                        <input type="text" id="v-custom-faith" placeholder="请输入你信仰的神明或理念" oninput="checkForm()">
+                    </div>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         <label>冒险者等级</label>
@@ -367,7 +470,7 @@
                     </div>
                     <div class="points-display">剩余点数: <span id="points-left">24</span></div>
                 </div>
-                <div style="font-size: 11px; color: #777; margin-bottom: 10px;">评级提示: 学徒[1-9] 正式[10-15] 精英[16-19] 大师[20]</div>
+                <div style="font-size: 11px; color: #aaa; margin-bottom: 10px;">评级提示: 学徒[1-9] 正式[10-15] 精英[16-19] 大师[20]</div>
 
                 <div class="attr-grid">
                     <div class="attr-item"><span title="力量">STR</span><div class="attr-controls"><button class="attr-btn" onclick="modAttr('str', -1)">-</button><span id="v-str">8</span><button class="attr-btn" onclick="modAttr('str', 1)">+</button></div></div>
@@ -380,10 +483,9 @@
 
                 <div class="form-group full-width" style="margin-top: 15px;">
                     <div class="flex-row">
-                        <label>初始技能与特长</label>
-                        <button class="small-btn" onclick="rollSkills()">随机抽取</button>
+                        <label>初始技能与特长 <span style="font-weight:normal; color:#aaa; font-size:11px;">(随上方种族与职业动态生成，可手动编辑)</span></label>
                     </div>
-                    <textarea id="v-skills" placeholder="可在此手动输入，或点击右上角随机抽取..."></textarea>
+                    <textarea id="v-skills" placeholder="在此编辑你的专属技能..."></textarea>
                 </div>
 
                 <div class="form-group full-width" style="margin-top: 10px;">
@@ -412,60 +514,39 @@
     </div>
 
     <script>
-        /* ========== 数据定义 ========== */
-        var abilityPool = [
-            '火焰箭(塑能法师) [学徒] - 射出一支造成少量火焰伤害的箭矢。',
-            '次级治疗术(牧师) [学徒] - 治愈轻微的伤口。',
-            '机械亲和(工程师) [学徒] - 在修理简单的机械装置时更为得心应手。',
-            '街头智慧(盗贼) [学徒] - 熟悉城市的阴暗角落，更容易找到黑市或销赃渠道。',
-            '健壮(战士) [学徒] - 你的体能优于常人，不易感到疲劳。',
-            '动物伙伴(游侠) [学徒] - 你有一只忠诚的动物伙伴（如狗或鹰）协助你。',
-            '催情之触(女巫) [学徒] - 通过触摸，能引发目标轻微的性兴奋。',
-            '优雅步法(精灵) [学徒] - 你的行动悄无声息，难以被察觉。',
-            '酒量过人(矮人) [学徒] - 你很难被酒精灌醉。',
-            '魅惑嗓音(诗人) [学徒] - 你的歌声或话语更容易获得他人的好感。',
-            '火球术(塑能法师) [正式] - 投掷一个炽热的火球，在撞击时爆炸，对小范围敌人造成火焰伤害。',
-            '精准射击(射手) [正式] - 使用远程武器时，能更精准地命中目标的弱点。',
-            '盾牌格挡(战士) [正式] - 你能熟练地使用盾牌格挡攻击，有效减少受到的物理伤害。',
-            '开锁(盗贼) [正式] - 能够开启大部分普通机械锁。',
-            '防护邪恶(牧师) [正式] - 制造一个神圣光环，使不死生物与恶魔等邪恶存在难以靠近。',
-            '蒸汽过载(工程师) [正式] - 短暂提升蒸汽装备的性能，但有一定几率造成损坏。',
-            '欲望感知(女巫) [正式] - 能够模糊地感知到周围生物强烈的欲望（如饥饿、恐惧、性欲）。',
-            '龙族血脉(龙娘) [正式] - 你对火焰或特定元素拥有更高的抗性。',
-            '飞行(翼人) [正式] - 你可以依靠翅膀进行短距离的滑翔或飞行。',
-            '地底潜行(苍白精灵) [正式] - 在地底世界的黑暗环境中，你的潜行能力得到极大增强。',
-            '符文知识(灰矮人) [正式] - 你认识并能激活一些基础的矮人符文。',
-            '再生之血(吸血鬼) [正式] - 你的伤口能够缓慢自愈。',
-            '神圣斩击(天使) [正式] - 为你的武器附加神圣能量，对不死生物造成额外伤害。',
-            '狂暴(兽人) [正式] - 在战斗中越战越勇，受伤越重，攻击力越高。',
-            '陷阱制作(哥布林) [正式] - 擅长利用简单的材料制作出效果出人意料的陷阱。',
-            '闪电链(塑能法师) [精英] - 释放一道跳跃的闪电，攻击多个敌人。',
-            '剑刃风暴(战士) [精英] - 挥舞武器形成一阵钢铁风暴，同时攻击周围的所有敌人。',
-            '暗影步(盗贼) [精英] - 能够短距离穿梭于阴影之中，实现瞬间移动。',
-            '群体治疗术(牧师) [精英] - 同时治愈多名盟友的伤势。',
-            '魔导武装(工程师) [精英] - 你拥有一件或多件自己改造的魔导装备，性能优于制式产品。',
-            '精液炼成(女巫) [精英] - 能够将精液作为核心材料，炼制出效果独特的魔法药剂或诅咒物品。',
-            '龙息(龙娘) [精英] - 喷吐出带有元素力量的毁灭性吐息。',
-            '高空机动(翼人) [精英] - 你能在高空中进行复杂的飞行动作，并利用气流获得极高的速度。',
-            '血液操控(吸血鬼) [精英] - 能够操控自己或他人已经流出的血液。',
-            '天使之羽(天使) [精英] - 消耗一片羽毛来施展一次强大的治愈或防护法术。',
-            '次元斩(剑士) [大师] - 挥剑斩开空间的瞬间，对远处的敌人造成无法格挡的伤害。',
-            '暴风雪(塑能法师) [大师] - 召唤一场覆盖广大区域的暴风雪，持续对敌人造成冰冻伤害并阻碍其行动。',
-            '绝对潜隐(盗贼) [大师] - 在阴影中彻底消失，连魔法侦测也无法发现你的踪迹。',
-            '复活术(牧师) [大师] - 将刚刚死去的生物复活，但需要消耗巨大的代价。',
-            '蒸汽动力甲驾驶(工程师) [大师] - 你能熟练驾驶并改造军用级别的蒸汽动力甲。',
-            '生命汲取(女巫) [大师] - 通过性交或其他方式，直接吸取目标的生命力来补充自身魔力或恢复青春。',
-            '真名言灵(龙娘) [大师] - 呼唤自己的真名，短时间内解放血脉的全部力量，获得匹敌古代巨龙的力量。',
-            '初拥(吸血鬼) [大师] - 能够通过复杂的仪式，将凡人转化为自己的后裔。',
-            '神之代行(天使/选民) [大师] - 短暂地成为神明的容器，引导神力施展出超越凡人极限的神迹。',
-            'Waaagh!力场(兽人) [大师] - 作为战将，你的存在本身就能凝聚周围兽人的战意，形成一个强化所有友方绿皮的巨大力场。',
-            '时间停止(变化法师) [传奇] - 在极小的范围内，让时间陷入短暂的静止。',
-            '祈愿术(通用) [传奇] - 扭曲现实，实现一个愿望，但可能引发不可预知的后果。',
-            '神国召唤(牧师) [传奇] - 打开一扇通往神国的传送门，召唤一位强大的天使或神仆为你作战。',
-            '黄金魔女的庇护(女巫) [传奇] - 你持有莉莉安娜·晨星赐予的信物，在一次致命危机中，能召唤她的力量保护你。',
-            '巫妖命匣(死灵法师) [传奇] - 你已将自己的灵魂与一个命匣绑定，只要命匣不毁，你便不会真正死亡。',
-            '规则改写(世界) [天灾] - 你的存在本身就是一种规则的体现，能够小范围、短时间地修改世界的物理或魔法定律。'
-        ];
+        /* ========== 数据定义：种族特性(1正式) ========== */
+        var raceSkills = {
+            '人类': '多面手 [正式]: 拥有极强的适应与学习能力，在进行跨领域技能判定时获得微弱优势。',
+            '亚人': '半兽化 [正式]: 短暂激活野兽血脉，身体呈现半兽化特征，大幅提升感官敏锐度与肉体爆发力。',
+            '龙娘': '龙族血脉 [正式]: 你对火焰或特定元素拥有更高的抗性。',
+            '矮人': '岩石体魄 [正式]: 皮肤短暂硬化如岩石，大幅减免受到的物理打击。',
+            '兽人': '狂暴 [正式]: 在战斗中越战越勇，受伤越重，攻击力越高。',
+            '血族': '再生之血 [正式]: 你的伤口能够缓慢自愈。',
+            '翼人': '飞行 [正式]: 你可以依靠翅膀进行短距离的滑翔或飞行。',
+            '精灵': '风之矢 [正式]: 用魔力凝聚成无形箭矢射出，不受风向影响。',
+            '天使': '神圣斩击 [正式]: 为你的武器附加神圣能量，对不死生物造成额外伤害。',
+            '人偶': '无机之躯 [正式]: 免疫疾病与常规毒素，且对精神类魔法有较高的抗性。',
+            '女巫': '欲望感知 [正式]: 能够模糊地感知到周围生物强烈的欲望（如饥饿、恐惧、性欲）。',
+            '哥布林': '陷阱制作 [正式]: 擅长利用简单的材料制作出效果出人意料的陷阱。',
+            '自定义': ''
+        };
+
+        /* ========== 数据定义：职业技能(1正式+1精英) ========== */
+        var classSkills = {
+            '无': '',
+            '塑能法师': '火球术 [正式]: 投掷一个炽热的火球，在撞击时爆炸，对小范围敌人造成火焰伤害。\n闪电链 [精英]: 释放一道跳跃的闪电，攻击多个敌人。',
+            '变化法师': '肢体强化 [正式]: 改变自身或盟友的部分肌肉结构，短暂获得极大的力量。\n形态重塑 [精英]: 将一个生物或物体短暂变为无害的小型动物。',
+            '死灵法师': '骸骨复苏 [正式]: 从尸骸中唤醒一具持武器的骷髅士兵为你作战。\n亡灵军势 [精英]: 一次性唤醒周围的一片尸骨，形成一小队不死生物包围敌人。',
+            '牧师': '防护邪恶 [正式]: 制造一个神圣光环，使不死生物与恶魔等邪恶存在难以靠近。\n群体治疗术 [精英]: 同时治愈多名盟友的伤势。',
+            '工程师': '蒸汽过载 [正式]: 短暂提升蒸汽装备的性能，但有一定几率造成损坏。\n魔导武装 [精英]: 你拥有一件或多件自己改造的魔导装备，性能优于制式产品。',
+            '盗贼': '开锁 [正式]: 能够开启大部分普通机械锁。\n暗影步 [精英]: 能够短距离穿梭于阴影之中，实现瞬间移动。',
+            '战士': '盾牌格挡 [正式]: 你能熟练地使用盾牌格挡攻击，有效减少受到的物理伤害。\n剑刃风暴 [精英]: 挥舞武器形成一阵钢铁风暴，同时攻击周围的所有敌人。',
+            '剑士': '剑气斩 [正式]: 挥剑劈出一道肉眼可见的锐利气流，撕裂前方的物体。\n极速突刺 [精英]: 身形化为一道直线残影，瞬间贯穿路径上的所有敌人。',
+            '射手': '精准射击 [正式]: 使用远程武器时，能更精准地命中目标的弱点。\n爆裂箭矢 [精英]: 射出一支绑有炼金炸药的特制箭，命中目标后产生剧烈的范围爆炸。',
+            '游侠': '野性呼唤 [正式]: 发出特定音频的哨声，驱使周边的野生动物协助干扰敌人。\n丛林隐蔽 [精英]: 在自然环境中与背景完美融合，只要保持静止就几乎不可能被发现。',
+            '诗人': '振奋战歌 [正式]: 弹奏乐器高声歌唱，驱散盟友的恐惧感并提升其战斗意志。\n魅惑之音 [精英]: 用充满魔力的嗓音编织幻境，使周围的低阶心智生物陷入迷茫或倒戈。',
+            '自定义': ''
+        };
 
         var storyTemplates = {
             '无': '你的过去一片空白，未来将由你亲手书写。所有设定将以你的自定义为准。',
@@ -502,9 +583,10 @@
                 storySelect.appendChild(opt);
             }
             storySelect.value = '冒险者';
+
             handleStoryChange();
             updateAttrDisplay();
-            rollSkills();
+            updateSkills(); /* 默认执行一次技能组装 */
             checkForm();
         }
 
@@ -519,13 +601,69 @@
             }
         }
 
+        function handleRaceChange() {
+            var val = document.getElementById('v-race').value;
+            var row = document.getElementById('custom-race-row');
+            if (val === '自定义') {
+                row.style.display = 'flex';
+            } else {
+                row.style.display = 'none';
+            }
+            updateSkills();
+            checkForm();
+        }
+
+        function handleClassChange() {
+            var val = document.getElementById('v-class').value;
+            var row = document.getElementById('custom-class-row');
+            if (val === '自定义') {
+                row.style.display = 'flex';
+            } else {
+                row.style.display = 'none';
+            }
+            updateSkills();
+            checkForm();
+        }
+
+        /* 新增：处理信仰变化 */
+        function handleFaithChange() {
+            var val = document.getElementById('v-faith').value;
+            var row = document.getElementById('custom-faith-row');
+            if (val === '自定义') {
+                row.style.display = 'flex';
+            } else {
+                row.style.display = 'none';
+            }
+            checkForm();
+        }
+
+        /* 动态组合种族与职业技能 */
+        function updateSkills() {
+            var race = document.getElementById('v-race').value;
+            var pclass = document.getElementById('v-class').value;
+
+            var rSkill = raceSkills[race] || '';
+            var cSkill = classSkills[pclass] || '';
+
+            /* 更新UI提示字 */
+            document.getElementById('hint-race').innerText = rSkill ? '获得种族特性：已同步' : '无特殊种族特性';
+            document.getElementById('hint-class').innerText = cSkill ? '获得职业技能：已同步' : '无默认职业技能';
+
+            /* 组合文本并填入 */
+            var combined = [];
+            if(rSkill) combined.push(rSkill);
+            if(cSkill) combined.push(cSkill);
+
+            document.getElementById('v-skills').value = combined.join('\n\n');
+        }
+
         function handleStoryChange() {
             var val = document.getElementById('v-story').value;
             document.getElementById('story-desc').innerHTML = storyTemplates[val] || '';
 
             var bgLabel = document.getElementById('label-bg');
             if (val === '完全自定义开局') {
-                bgLabel.innerHTML = '自定义设定 / 背景故事 <span style="color:#e74c3c">* (自定义开局必填)</span>';
+                bgLabel.innerHTML = '自定义设定 / 背景故事 <span style="color:#cd5c5c">* (自定义开局必填)</span>';
                 if(document.getElementById('v-bg').value === '无') {
                     document.getElementById('v-bg').value = '';
                 }
@@ -578,7 +716,7 @@
             var left = maxPoints - getUsedPoints();
             var el = document.getElementById('points-left');
             el.innerText = left;
-            el.style.color = left === 0 ? '#e74c3c' : '#f1c40f';
+            el.style.color = left === 0 ? '#cd5c5c' : '#d4af37';
 
             var btns = document.getElementsByClassName('attr-btn');
             for(var i=0; i<btns.length; i++) {
@@ -588,25 +726,26 @@
             }
         }
 
-        function rollSkills() {
-            var temp = abilityPool.slice();
-            var result = [];
-            for(var i=0; i<3; i++) {
-                if(temp.length === 0) break;
-                var idx = Math.floor(Math.random() * temp.length);
-                result.push(temp.splice(idx, 1)[0]);
-            }
-            document.getElementById('v-skills').value = result.join('\n');
-        }
-
         function checkForm() {
             var name = document.getElementById('v-name').value.trim();
             var story = document.getElementById('v-story').value;
             var bg = document.getElementById('v-bg').value.trim();
 
+            var race = document.getElementById('v-race').value;
+            var customRace = document.getElementById('v-custom-race').value.trim();
+
+            var pclass = document.getElementById('v-class').value;
+            var customClass = document.getElementById('v-custom-class').value.trim();
+
+            var faith = document.getElementById('v-faith').value;
+            var customFaith = document.getElementById('v-custom-faith').value.trim();
+
             var isValid = true;
             if (!name) isValid = false;
             if (story === '完全自定义开局' && (!bg || bg === '无')) isValid = false;
+            if (race === '自定义' && !customRace) isValid = false;
+            if (pclass === '自定义' && !customClass) isValid = false;
+            if (faith === '自定义' && !customFaith) isValid = false;
 
             document.getElementById('btn-submit').disabled = !isValid;
         }
@@ -634,9 +773,26 @@
                 var name = sanitizeText(document.getElementById('v-name').value.trim());
                 var gender = sanitizeText(document.getElementById('v-gender').value);
                 var age = document.getElementById('v-age').value;
-                var race = sanitizeText(document.getElementById('v-race').value);
-                var pclass = sanitizeText(document.getElementById('v-class').value.trim()) || '无';
-                var faith = sanitizeText(document.getElementById('v-faith').value.trim()) || '无';
+
+                var race = document.getElementById('v-race').value;
+                if(race === '自定义') {
+                    race = document.getElementById('v-custom-race').value.trim() || '未知种族';
+                }
+                race = sanitizeText(race);
+
+                var pclass = document.getElementById('v-class').value;
+                if(pclass === '自定义') {
+                    pclass = document.getElementById('v-custom-class').value.trim() || '未知职业';
+                }
+                pclass = sanitizeText(pclass);
+
+                /* 处理信仰提交 */
+                var faith = document.getElementById('v-faith').value;
+                if(faith === '自定义') {
+                    faith = document.getElementById('v-custom-faith').value.trim() || '无';
+                }
+                faith = sanitizeText(faith);
+
                 var rank = sanitizeText(document.getElementById('v-rank').value);
                 var money = document.getElementById('v-money').value;
 
@@ -684,9 +840,9 @@
                 finalMsg += "  选择: " + story + "\n";
                 finalMsg += "  详细描述:" + storyDesc + "\n";
                 finalMsg += "```\n";
-                finalMsg += "系统指令：请根据上述所有的参，进行变量更新与生成开局(若出生地与开局剧本冲突，以开局剧本为准)";
+                finalMsg += "系统指令：请根据上述所有的参数，进行变量更新与生成开局(若出生地与开局剧本冲突，以开局剧本为准)";
 
-                document.getElementById('app').innerHTML = '<div style="text-align:center; padding: 40px; font-size: 16px; color:#2ecc71;">角色档案已载入灵魂，正在连接米拉比里斯大陆...</div>';
+                document.getElementById('app').innerHTML = '<div style="text-align:center; padding: 40px; font-size: 16px; color:#d4af37; font-weight:bold;">档案数据注入魔网中，正在连接米拉比里斯大陆...</div>';
 
                 if (typeof triggerSlash === 'function') {
                     /* 使用安全的发送指令 */
