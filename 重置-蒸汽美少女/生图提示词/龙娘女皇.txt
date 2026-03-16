@@ -1,0 +1,12 @@
+正面: masterpiece, best quality, ultra-detailed, illustration, cinematic light,
+1girl, solo, {{{{loli}}}}, {{{petite}}}, {{{{flat chest}}}},
+empress, dragon girl,
+long straight white hair, {blue gradient hair}, silver vertical pupils,
+{{{small horns}}}, dragon horns, dragon tail, silver wings (folded),
+sitting on huge obsidian throne, legs crossed, {looking down at viewer}, confident smirk, holding a golden goblet,
+wearing a gorgeous rococo dress, silver and white dress, gold embroidery, jewelry, majestic crown, detached puff sleeves,
+background: grand throne room, majestic, huge stained glass window, god rays, banner, intimidating aura, gap moe,
+ 2::dynamic::,1::vibrant::,5.2::expressive::,0.5::foreshortening::,0.2::blending::,wallpaper,highres,absurdres,very aesthetic,shiny skin,amazing quality, color trace,amazing extremely detailed 8k ,newest,mafuyu (chibi21),{official style},anime screencap,anime coloring,anime drawings,{year 2025},highres,{artist:[ogipote]},hiten,,[ask(askzy)],synzmayu,rurudo
+
+ 负面:
+ {{text}}, {bad id}, {{bad pixiv id}}}, {bad}, {{{worst quality}}}, extra fingers, multiple fingers (e.g., 6 fingers), extra digits, jpeg artifacts, very bad quality, low resolution (lowres), blurry, watermark, signature, username, scan, unfinished, displeasing, chromatic aberration, artistic error, errors, fewer elements, extra elements, missing elements, [abstract], 2::artist_collaboration ::, 2::storyboard ::, 2::mosaics ::,worst quality,low quality,artist collaboration, bad anatomy,extra fingers,extra legs, missing legs, mutation,bad anatomy,sketch,jpeg artifacts,ugly, poorly drawn,(censor),simple background,transparent background,logo

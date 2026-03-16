@@ -1,0 +1,6 @@
+负面必须
+  {{text}}, {bad id}, {{bad pixiv id}}}, {bad}, {{{worst quality}}}, extra fingers, multiple fingers (e.g., 6 fingers), extra digits, jpeg artifacts, very bad quality, low resolution (lowres), blurry, watermark, signature, username, scan, unfinished, displeasing, chromatic aberration, artistic error, errors, fewer elements, extra elements, missing elements, [abstract], 2::artist_collaboration ::, 2::storyboard ::, 2::mosaics ::,worst quality,low quality,artist collaboration, bad anatomy,extra fingers,extra legs, missing legs, mutation,bad anatomy,sketch,jpeg artifacts,ugly, poorly drawn,(censor),simple background,transparent background,logo
+
+
+  正面:
+  （1.14） :   2::dynamic::,1::vibrant::,5.2::expressive::,0.5::foreshortening::,0.2::blending::,wallpaper,highres,absurdres,very aesthetic,shiny skin,amazing quality, color trace,amazing extremely detailed 8k ,newest,mafuyu (chibi21),{official style},anime screencap,anime coloring,anime drawings,{year 2025},highres,{artist:[ogipote]},hiten,,[ask(askzy)],synzmayu,rurudo
